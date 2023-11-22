@@ -18,4 +18,4 @@ class Post(models.Model):
     picture = models.ImageField(upload_to='img/')
     
     def __str__(self):
-        return self.author
+        return self.title

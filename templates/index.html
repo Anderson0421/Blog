@@ -16,9 +16,9 @@
             <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 sm:mt-8 sm:pt-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
               {% for post in posts %}
                 <article class="flex max-w-xl flex-col items-start justify-between">
-                  <a href="#"><img class="rounded-lg py-5 w-3/4" src={{post.picture.url}} alt="imagen"></a>
+                  <a href="#" class="flex justify-center"><img class="rounded-lg py-5 w-3/4" src={{post.picture.url}} alt="imagen"></a>
                   <div class="flex items-center gap-x-4 text-xs">
-                    <time datetime="2020-03-16" class="text-gray-500">{{post.publicado}}</time>
+                    <time class="text-gray-500">{{post.publicado}}</time>
                     <a class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{post.categoria}}</a>
                   </div>
                   <div class="group relative">
