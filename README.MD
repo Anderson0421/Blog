@@ -2,6 +2,6 @@
 
 # Tecnologias
 * Django 
-* Tailwind
+* Tailwind.
 * Deploy in render.
 * Dashboard user.  
