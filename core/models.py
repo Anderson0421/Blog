@@ -1,6 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
+class User(AbstractUser):
+    #Abstract user se esta encargando de username , user, password y email, y nuestra clase podemos agregar cosas extras
+    pass
+
+    def __str__(self):
+        return self.username
 class Categoria(models.Model):
     name = models.CharField(max_length=150, verbose_name='Categoria')
 

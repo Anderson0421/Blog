@@ -8,6 +8,8 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',HomeView.as_view(), name='Home'),
+    path('accounts/', include('allauth.urls')),
+
     path('Dashboard/',include('dashboard.urls'), name='Dashboard'),
 
 ]
