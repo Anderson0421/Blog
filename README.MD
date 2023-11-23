@@ -1,5 +1,4 @@
-# Blog personal
-
+Blog personal hecho con mucho ❤️
 # Tecnologias
 * Django
 * Tailwind
