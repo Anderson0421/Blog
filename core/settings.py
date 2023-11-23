@@ -32,9 +32,16 @@ INSTALLED_APPS = [
 
     'core',
     'tailwind',
+    'crispy_tailwind',
+    'crispy_forms',
     'theme',
 
     'dashboard',
+    #allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -43,7 +50,12 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = "/usr/bin/npm"
+SITE_ID = 1
+
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+#NPM_BIN_PATH = "/usr/bin/npm"
 
 
 MIDDLEWARE = [
@@ -55,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -77,6 +90,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 DATABASES = {
     'default': {
@@ -85,6 +103,7 @@ DATABASES = {
     }
 }
 
+LOGIN_REDIRECT_URL = '/'
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -134,3 +153,4 @@ if not DEBUG:
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
+AUTH_USER_MODEL = 'core.User'

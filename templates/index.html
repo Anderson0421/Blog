@@ -7,6 +7,7 @@
             <div class="mx-auto max-w-2xl lg:mx-0">
               <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">¡Bienvenido a Mi Blog!</h2>
               <p class="mt-2 text-base leading-8 text-gray-600">
+                {% if user.is_authenticated %}Que tal {{request.user.username|capfirst}}?.{% endif %}
                 Soy Anderson, un apasionado desarrollador fullstack. Aquí encontrarás un espacio donde la programación se encuentra con mis opiniones personales.
             </p>           
             <p class="text-base leading-8 text-gray-600">
@@ -22,7 +23,7 @@
                   </div>
                   <div class="group relative">
                     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                      <a href="#">
+                      <a href="{{post.get_absolute_url}}">
                         <span class="absolute inset-0"></span>
                         {{post.title}}
                       </a>
@@ -43,6 +44,33 @@
                       <p class="text-gray-600">Desarollador FullStack</p>
                     </div>
                   </div>
+                  <div class="mt-5">
+                    <h1 class="text-gray-600">Comentarios</h1>
+                    <div class="py-2 flex gap-5">
+                        {% if user.is_authenticated %}
+                          <a href="{{object.get_like_url}}" class="flex gap-2">
+                            {% else %}
+                          <a href="{% url "account_login" %}" class="flex gap-2">
+
+                        {% endif %}
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
+                          {{post.get_likes_count}}
+                        </a>
+
+                        <p class="flex gap-2" >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            {{post.get_views_count}}
+                        </p>
+                        <p class="flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                            </svg>
+                            {{post.get_comment_count}}</p>
+                    </div>
+                </div>
                 </article>
               {% endfor %}
             </div>

@@ -7,8 +7,18 @@ from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    #Posts
     path('',HomeView.as_view(), name='Home'),
+    path('<slug>/',DetailPost.as_view(), name='Detail'),
+
+
+    #likes comentarios y vistas
+    path('like/<slug>',LikeView, name='like'),
+
+
     path('Dashboard/',include('dashboard.urls'), name='Dashboard'),
+    path('accounts/', include('allauth.urls')),
 
 ]
 if settings.DEBUG:
