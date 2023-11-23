@@ -1,7 +1,7 @@
 # Blog personal
 
 # Tecnologias
-* Django 
-* Tailwind.
-* Deploy in render.
+* Django
+* Tailwind
+* Deploy in render
 * Dashboard user.  
