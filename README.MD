@@ -4,4 +4,4 @@
 * Django
 * Tailwind
 * Deploy in render
-* Dashboard user.  
+* Dashboard user
