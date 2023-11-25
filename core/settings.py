@@ -154,3 +154,5 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 AUTH_USER_MODEL = 'core.User'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
