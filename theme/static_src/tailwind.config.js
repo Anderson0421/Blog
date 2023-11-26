@@ -51,7 +51,14 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'dark-main': '#083344',
+                'dark-second': '#083344',
+                'dark-third': '#3A3B3C',
+                'dark-txt': '#B8BBBF',
+            },
+        },
     },
     variants: {
         extend: {},
