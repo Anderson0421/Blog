@@ -48,7 +48,7 @@
                     <h1 class="text-gray-600">Comentarios</h1>
                     <div class="py-2 flex gap-5">
                         {% if user.is_authenticated %}
-                          <a href="{{object.get_like_url}}" class="flex gap-2">
+                          <a href="{{post.get_like_url}}" class="flex gap-2">
                             {% else %}
                           <a href="{% url "account_login" %}" class="flex gap-2">
 

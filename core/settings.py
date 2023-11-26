@@ -54,6 +54,7 @@ SITE_ID = 1
 
 CRISPY_TEMPLATE_PACK = "tailwind"
 
+#NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 NPM_BIN_PATH = "/usr/bin/npm"
 
@@ -154,3 +155,5 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 AUTH_USER_MODEL = 'core.User'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'

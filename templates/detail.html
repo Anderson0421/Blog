@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<article class="flex max-w-xl ml-16 mt-8 flex-col items-start justify-between">
+<article class="flex max-w-xl  max-sm:ml-3 ml-16 mt-8 flex-col items-start justify-between">
     <div class="flex items-center gap-x-4 text-xs">
     <time class="text-gray-500">{{object.publicado}}</time>
     <a class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{post.categoria}}</a>
@@ -30,7 +30,6 @@
     </div>
     </div>
     <div class="mt-5">
-        <h1 class="text-gray-600">Comentarios</h1>
         <div class="py-2 flex gap-5">
             {% if user.is_authenticated %}
             <a href="{{object.get_like_url}}" class="flex gap-2">
@@ -51,7 +50,34 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                 </svg>
-                {{object.get_comment_count}}</p>
+                {{object.get_comment_count}}
+            </p>
+        </div>
+        <h1 class="text-gray-600">Comentarios</h1>
+        <div class="mt-4">
+            {% for comment in object.comments %}
+                <div class="border p-4 mb-4 rounded bg-gray-100">
+                    <p class="text-gray-500 mb-2 text-xs">{{comment.timestamp}}</p>
+                    <p class="text-gray-700 font-bold">@{{ comment.user|capfirst }}</p>
+                    <p class="text-gray-800">{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div>
+            <form method="POST" class="max-w-sm mx-auto pt-1 bg-white rounded shadow-md">
+                {% csrf_token %}
+                
+                <div class="mb-4">
+                    {{ form.content }}
+                </div>
+                
+            
+                <div class="flex items-center justify-between">
+                    <input type="submit" value="Comentar" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+                </div>
+            </form>
+            
         </div>
     </div>
 </article>

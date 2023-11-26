@@ -7,6 +7,7 @@ from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', include('dashboard.urls'), name='dashboard'), 
 
     #Posts
     path('',HomeView.as_view(), name='Home'),
@@ -16,8 +17,6 @@ urlpatterns = [
     #likes comentarios y vistas
     path('like/<slug>',LikeView, name='like'),
 
-
-    path('Dashboard/',include('dashboard.urls'), name='Dashboard'),
     path('accounts/', include('allauth.urls')),
 
 ]
