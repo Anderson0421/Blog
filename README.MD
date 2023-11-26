@@ -3,3 +3,4 @@ Blog personal hecho con mucho ❤️
 * Django 
 * Tailwind 
 * Deploy in render : https://blog-anderdev-com.onrender.com/
+# Funcionalidades
