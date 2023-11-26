@@ -18,7 +18,6 @@ class HomeView(View):
     
 
 class DetailPost(DetailView):
-
     model = Post
     template_name = 'detail.html'
 
@@ -29,6 +28,7 @@ class DetailPost(DetailView):
         else:
             return redirect('/')
         return object
+    
     def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
         
