@@ -26,6 +26,8 @@ class DashboardView(View):
     #La cantidad de likes
     #La cantidad de comentarios y vistas
 
+    #Ultimos 10 posts - Con Datatales
+
 
     def get(self, request, *args, **kwargs):
         hora_actual = timezone.now()
@@ -34,7 +36,7 @@ class DashboardView(View):
         likes = Like.objects.all().count()
         comments = Comment.objects.all().count()
         views = PostView.objects.all().count()
-
+        post = Post.objects.all()
         context = {
             'hora':hora_actual,
             'users':users,
@@ -42,5 +44,7 @@ class DashboardView(View):
             'likes':likes,
             'comments':comments,
             'views':views,
+            'post':post,
         }
         return render(request, 'dashboard/index.html', context)
+    
