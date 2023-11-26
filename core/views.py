@@ -14,13 +14,12 @@ class HomeView(View):
             'posts':posts,
             'dashboardinit':dashboardinit
         }   
-        return render(request,'index.html',context)
+        return render(request,'post/index.html',context)
     
 
 class DetailPost(DetailView):
-
     model = Post
-    template_name = 'detail.html'
+    template_name = 'post/detail.html'
 
     def get_object(self, *kwargs):
         object = super().get_object(*kwargs)
@@ -29,6 +28,7 @@ class DetailPost(DetailView):
         else:
             return redirect('/')
         return object
+    
     def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
         

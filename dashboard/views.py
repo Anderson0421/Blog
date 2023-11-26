@@ -7,6 +7,9 @@ from django.utils import timezone
 from core.models import User,Post,Like, Comment,PostView
 # Dashboard
 
+#Traemos el formulario
+from .forms import PostForm
+
 def admin_only(function):
     def _wrapped(request, *args, **kwargs):  # Cambiado de user a request
         if request.user.has_perm('core.can_add_post_view'):
@@ -26,7 +29,7 @@ class DashboardView(View):
     #La cantidad de likes
     #La cantidad de comentarios y vistas
 
-
+    #Ultimos 10 posts - Con Datatales
     def get(self, request, *args, **kwargs):
         hora_actual = timezone.now()
         users = User.objects.all().count()
@@ -34,7 +37,7 @@ class DashboardView(View):
         likes = Like.objects.all().count()
         comments = Comment.objects.all().count()
         views = PostView.objects.all().count()
-
+        post = Post.objects.all()
         context = {
             'hora':hora_actual,
             'users':users,
@@ -42,5 +45,19 @@ class DashboardView(View):
             'likes':likes,
             'comments':comments,
             'views':views,
+            'post':post,
         }
+        return render(request, 'dashboard/index.html', context)
+    
+
+class NewPost(View):
+    @method_decorator(login_required) #Verificamos que este iniciado sesion
+    @method_decorator(admin_only) #Y que tenga los permisos para acceder
+
+    def get(self,request, *args, **kwargs):
+        form = PostForm()
+        context = {
+            'form':form
+        }
+        
         return render(request, 'dashboard/index.html', context)

@@ -7,10 +7,18 @@
     {% tailwind_css %}
     
     <title>My Blog</title>
+    {% block styles %}
+    
+    {% endblock styles %}
+    
 </head>
 <body>
+    {% include "dashboard/includes/sidebar.html" %}
     {% block content %}
 
     {% endblock content %}
+    {% block script %}
+        
+    {% endblock script %}
 </body>
 </html>
