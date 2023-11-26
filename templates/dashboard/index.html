@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
 {% block content %}
-    {% include "dashboard/includes/sidebar.html" %}
+    
     {% block style %}
     <style>
         /* Estilos para la paginación de DataTables */
@@ -48,6 +48,7 @@
 
     {# Datos del dashboard #}
     {% include "dashboard/src/datos.html" %}
+    
 
 {% endblock content %}
 
