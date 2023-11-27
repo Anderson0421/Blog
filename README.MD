@@ -7,4 +7,4 @@ Blog personal hecho con mucho ❤️
 - Inicio de sesion y registro
 - Likes, Comentarios, y Vistas 
 - Dashboard de administrador
-- Autenticacion y permisos 
+- Autenticacion y permisos
