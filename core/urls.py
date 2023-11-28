@@ -7,8 +7,17 @@ from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dashboard/', include('dashboard.urls'), name='dashboard'), 
+
+    #Posts
     path('',HomeView.as_view(), name='Home'),
-    path('Dashboard/',include('dashboard.urls'), name='Dashboard'),
+    path('<slug>/',DetailPost.as_view(), name='Detail'),
+
+
+    #likes comentarios y vistas
+    path('like/<slug>',LikeView, name='like'),
+
+    path('accounts/', include('allauth.urls')),
 
 ]
 if settings.DEBUG:

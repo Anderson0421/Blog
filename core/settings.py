@@ -32,9 +32,16 @@ INSTALLED_APPS = [
 
     'core',
     'tailwind',
+    'crispy_tailwind',
+    'crispy_forms',
     'theme',
 
     'dashboard',
+    #allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -42,6 +49,12 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+SITE_ID = 1
+
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+#NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 NPM_BIN_PATH = "/usr/bin/npm"
 
@@ -55,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -77,6 +91,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 DATABASES = {
     'default': {
@@ -85,6 +104,7 @@ DATABASES = {
     }
 }
 
+LOGIN_REDIRECT_URL = '/'
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -114,11 +134,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+# settings.py
 
+# Configuraciones relacionadas con archivos estáticos
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, "static"),
 ]
+
 STATIC_ROOT  = os.path.join(BASE_DIR, 'static_root')
 
 
@@ -134,3 +157,6 @@ if not DEBUG:
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
+AUTH_USER_MODEL = 'core.User'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'

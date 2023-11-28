@@ -1,0 +1,74 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+    
+    {% block style %}
+    <style>
+        /* Estilos para la paginación de DataTables */
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin-right: 8px;
+        }
+
+        .pagination li a {
+            display: block;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: #333;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .pagination li.active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination li.disabled a {
+            pointer-events: none;
+            background-color: #eee;
+            color: #aaa;
+        }
+    </style>
+    {% endblock style %}
+
+    {# Bienvenida al usuario #}
+    <div class="pt-5 bg-dark-second ml-64">
+        <div class="ml-10 pb-5">
+            <span class="text-gray-200">{{hora}}</span>
+            <h1 class="text-3xl text-white">Bienvenido <span class="font-semibold">{{request.user.username|capfirst}}</span> </h1>
+        </div>
+    </div>
+
+    {# Datos del dashboard #}
+    {% include "dashboard/src/datos.html" %}
+    
+
+{% endblock content %}
+
+{# data tables scripts #}
+{% block script %}
+        <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+        <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <script type="application/javascript">
+                $('#data').DataTable({
+                    responsive: true,
+                    autoWidth: false
+                });
+        </script>
+        
+{% endblock script %}
+
+
