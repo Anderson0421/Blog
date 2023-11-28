@@ -101,10 +101,12 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:123456@localhost:5433/blog',
+        default=os.environ.get('DATABASE_KEY'),
         conn_max_age=600
     )
 }
+
+
 LOGIN_REDIRECT_URL = '/'
 
 
