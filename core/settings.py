@@ -8,16 +8,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '-s&!i0(w%s@ey+nf#!rbci22zr!(%=79#em3@ahi8ervz^_mm*('
 
-DEBUG = 'RENDER' not in os.environ
-
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 
 
 
