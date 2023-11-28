@@ -31,6 +31,7 @@ class DashboardView(View):
 
     #Ultimos 10 posts - Con Datatales
     def get(self, request, *args, **kwargs):
+        form = PostForm()
         hora_actual = timezone.now()
         users = User.objects.all().count()
         posts = Post.objects.all().count()
@@ -46,18 +47,14 @@ class DashboardView(View):
             'comments':comments,
             'views':views,
             'post':post,
+            'form':form,
         }
         return render(request, 'dashboard/index.html', context)
     
-
-class NewPost(View):
-    @method_decorator(login_required) #Verificamos que este iniciado sesion
-    @method_decorator(admin_only) #Y que tenga los permisos para acceder
-
-    def get(self,request, *args, **kwargs):
-        form = PostForm()
-        context = {
-            'form':form
-        }
-        
-        return render(request, 'dashboard/index.html', context)
+    def post(self,request, *args, **kwargs):
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/dashboard/')
+        else:
+            return redirect('/dashboard/')

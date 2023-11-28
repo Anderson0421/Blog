@@ -42,7 +42,7 @@
                 </svg>
                 <div class="text-center flex flex-col">
                     <span class="text-lg">Comentarios registrados</span>
-                    <p class="text-2xl text-center font-bold">{{likes}}</p>
+                    <p class="text-2xl text-center font-bold">{{comments}}</p>
                 </div>
             </div>
 
@@ -98,8 +98,8 @@
             {% endfor %}
         </tbody>
     </table>
-    <div class="mb-10 mt-5">
-        <a href="{% url "new_post" %}" class="bg-green-500 text-white px-6 py-4 rounded-xl text-lg  hover:bg-green-700 duration-500 transition-colors ">+ Nuevo Post! 🎉</a>
+    <div class="mb-10 mt-5" id="NewPost">
+        <a href="#" class="bg-green-500 text-white px-6 py-4 rounded-xl text-lg  hover:bg-green-700 duration-500 transition-colors ">+ Nuevo Post! 🎉</a>
     </div>
     
 
