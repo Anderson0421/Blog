@@ -1,7 +1,7 @@
 Blog personal hecho con mucho ❤️
 # Tecnologias
 * Django 
-* Tailwind 
+* Tailwind
 * Deploy in render : https://blog-anderdev-com.onrender.com/
 # Funcionalidades
 - Inicio de sesion y registro
