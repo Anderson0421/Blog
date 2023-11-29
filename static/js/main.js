@@ -12,3 +12,4 @@ CloseModal.addEventListener('click',()=>{
     ModalNew.classList.add('hidden')
 })
 
+
