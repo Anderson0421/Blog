@@ -7,9 +7,41 @@
     {% tailwind_css %}
     
     <title>My Blog</title>
-    {% block styles %}
-    
-    {% endblock styles %}
+    {% block style %}
+        <style>
+            /* Estilos para la paginación de DataTables */
+            .pagination {
+                display: flex;
+                list-style: none;
+                padding: 0;
+            }
+
+            .pagination li {
+                margin-right: 8px;
+            }
+
+            .pagination li a {
+                display: block;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                color: #333;
+                background-color: #ddd;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .pagination li.active a {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            .pagination li.disabled a {
+                pointer-events: none;
+                background-color: #eee;
+                color: #aaa;
+            }
+        </style>
+    {% endblock style %}
     
 </head>
 <body>
@@ -18,7 +50,23 @@
 
     {% endblock content %}
     {% block script %}
-        
-    {% endblock script %}
+    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+    <script type="application/javascript">
+            $('#data').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
+
+    </script>
+    
+{% endblock script %}
 </body>
 </html>
