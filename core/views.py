@@ -54,6 +54,3 @@ def LikeView(request, slug):
         return redirect('/')
     Like.objects.create(user=request.user, post=post)
     return redirect('/')
-
-
-# Dashboard
