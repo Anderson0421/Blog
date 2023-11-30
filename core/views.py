@@ -16,9 +16,10 @@ class HomeView(View):
         liked_posts = []
 
         for post in posts:
-            like_query = Like.objects.filter(user=request.user, post=post)
-            liked = like_query.exists()
-            liked_posts.append({'liked': liked})
+            if request.user.is_authenticated:
+                like_query = Like.objects.filter(user=request.user, post=post)
+                liked = like_query.exists()
+                liked_posts.append({'liked': liked})
 
         context = {
             'posts': posts,  
