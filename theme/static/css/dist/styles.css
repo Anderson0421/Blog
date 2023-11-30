@@ -963,20 +963,8 @@ select {
   margin-right: 0.75rem;
 }
 
-.mr-10 {
-  margin-right: 2.5rem;
-}
-
-.mr-5 {
-  margin-right: 1.25rem;
-}
-
-.mr-60 {
-  margin-right: 15rem;
-}
-
-.mr-64 {
-  margin-right: 16rem;
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .block {
@@ -1031,12 +1019,12 @@ select {
   height: 1.25rem;
 }
 
-.h-4 {
-  height: 1rem;
-}
-
 .h-full {
   height: 100%;
+}
+
+.h-4 {
+  height: 1rem;
 }
 
 .min-h-screen {
@@ -1193,6 +1181,10 @@ select {
   gap: 0.75rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-x-4 {
   -moz-column-gap: 1rem;
        column-gap: 1rem;
@@ -1223,6 +1215,12 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .self-center {
@@ -1479,12 +1477,12 @@ select {
   padding: 0.5rem;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-2\.5 {
@@ -1573,16 +1571,12 @@ select {
   padding-bottom: 1rem;
 }
 
-.pr-12 {
-  padding-right: 3rem;
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .pt-1 {
   padding-top: 0.25rem;
-}
-
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 
 .text-left {
@@ -1630,6 +1624,11 @@ select {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-medium {
@@ -1725,6 +1724,11 @@ select {
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgba(239, 68, 68, var(--tw-text-opacity));
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgba(59, 130, 246, var(--tw-text-opacity));
 }
 
 .shadow-sm {
@@ -1855,9 +1859,18 @@ select {
   background-color: rgba(4, 120, 87, var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(220, 38, 38, var(--tw-bg-opacity));
+}
+
 .hover\:text-indigo-500:hover {
   --tw-text-opacity: 1;
   color: rgba(99, 102, 241, var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
 }
 
 .focus\:outline-none:focus {
@@ -1936,6 +1949,10 @@ select {
     margin-top: 2rem;
   }
 
+  .sm\:mr-64 {
+    margin-right: 16rem;
+  }
+
   .sm\:inline {
     display: inline;
   }
@@ -1970,6 +1987,10 @@ select {
 
   .sm\:flex-row-reverse {
     flex-direction: row-reverse;
+  }
+
+  .sm\:flex-col {
+    flex-direction: column;
   }
 
   .sm\:items-start {
@@ -2098,12 +2119,24 @@ select {
     margin-left: 4rem;
   }
 
+  .lg\:mr-64 {
+    margin-right: 16rem;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
   .lg\:max-w-none {
     max-width: none;
   }
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:flex-col {
+    flex-direction: column;
   }
 
   .lg\:px-8 {
@@ -2120,6 +2153,10 @@ select {
   .xl\:mr-64 {
     margin-right: 16rem;
   }
+
+  .xl\:flex {
+    display: flex;
+  }
 }
 
 @media (min-width: 1536px) {
@@ -2129,5 +2166,9 @@ select {
 
   .\32xl\:mr-64 {
     margin-right: 16rem;
+  }
+
+  .\32xl\:flex {
+    display: flex;
   }
 }

@@ -1,0 +1,14 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+    <div class="pt-5 ml-72">
+        <form method="POST" class="max-w-md mx-auto mt-8 bg-white p-8 rounded shadow-md">
+            {% csrf_token %}
+            <h1 class="text-2xl font-bold mb-4">¿Estás seguro de eliminar el registro <span class="text-blue-500">{{ post.title }}?</span></h1>
+            <div class="flex items-center space-x-4">
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:shadow-outline-red active:bg-red-800">Sí, seguro</button>
+                <a href="/" class="text-blue-500 hover:underline">Volver</a>
+            </div>
+        </form>
+        
+    </div>
+{% endblock content %}

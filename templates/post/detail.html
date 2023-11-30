@@ -2,29 +2,35 @@
 {% load static %}
 {% block content %}
 <article class="flex ml-5 lg:ml-16 xl:ml-16 2xl:ml-16 mt-8 flex-col items-start justify-between">
+    <a href="/" class="bg-blue-500 hover:bg-blue-700 mb-5 text-white font-bold py-2 px-4 rounded flex gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+        </svg>
+        
+        <p>Volver</p>
+    </a>
     <div class="flex items-center gap-x-4 text-xs">
     <time class="text-gray-500">{{object.publicado}}</time>
-    <a class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{post.categoria}}</a>
+    <div class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{post.categoria}}</div>
     </div>
     <div class="group relative">
     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-        <a href="#">
-        <span class="absolute inset-0"></span>
-        {{object.title}}
-        </a>
+        <span class="text-3xl">
+            {{object.title}}
+        </span>
     </h3>
-    <p class="mt-5 h-full pb-10 text-sm xl:mr-64  md:mr-64 2xl:mr-64 text-gray-600">
-        {{object.content}}
+    <p class="mt-5 h-full  text-sm xl:mr-64 lg:mr-64 md:mr-64 2xl:mr-64 text-gray-600">
+        {{object.content|safe}}
     </p>
     </div>
     <div class="relative mt-8 flex items-center gap-x-4">
         <img src={% static "logo.jpg" %} alt="" class="h-10 w-10 rounded-full bg-gray-50">
         <div class="text-sm leading-6">
             <p class="font-semibold text-gray-900">
-            <a href="#">
+            <div href="#">
                 <span class="absolute inset-0"></span>
                 {{object.author}}
-            </a>
+            </div>
             </p>
             <p class="text-gray-600">Desarollador FullStack</p>
         </div>
@@ -67,17 +73,6 @@
                 {{object.get_comment_count}}
             </p>
         </div>
-        <h1 class="text-gray-600">Comentarios</h1>
-        <div class="mt-4">
-            {% for comment in object.comments %}
-                <div class="border p-3 mb-4 rounded bg-gray-100">
-                    <p class="text-gray-500 mb-2 text-xs">{{comment.timestamp}}</p>
-                    <p class="text-gray-700 font-bold text-sm">@{{ comment.user|capfirst }}</p>
-                    <p class="text-gray-800 text-base">{{ comment.content }}</p>
-                </div>
-            {% endfor %}
-        </div>
-        
         <div>
             <form method="POST" class="max-w-sm mx-auto pt-1 bg-white rounded shadow-md">
                 {% csrf_token %}
@@ -87,11 +82,20 @@
                 </div>
                 
             
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between p-3">
                     <input type="submit" value="Comentar" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
                 </div>
             </form>
             
+        </div>
+        <div class="mt-4">
+            {% for comment in object.comments %}
+                <div class="border p-3 mb-4 rounded bg-gray-100">
+                    <p class="text-gray-500 mb-2 text-xs">{{comment.timestamp}}</p>
+                    <p class="text-gray-700 font-bold text-sm">@{{ comment.user|capfirst }}</p>
+                    <p class="text-gray-800 text-base">{{ comment.content }}</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </article>

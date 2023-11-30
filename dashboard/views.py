@@ -1,10 +1,11 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import View
+from django.views.generic import View,DeleteView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from core.models import User,Post,Like, Comment,PostView
+
 
 # Dashboard
 
@@ -84,6 +85,12 @@ class PostEditView(View):
             return redirect('/dashboard/')
         else:
             return redirect('/dashboard/')
+
+
+class DeleteView(DeleteView):
+    model = Post
+    template_name = 'dashboard/delete.html'
+    success_url =  reverse_lazy('dashboard_home')
 
 
 class ListUsers(View):
