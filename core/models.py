@@ -21,7 +21,8 @@ class Post(models.Model):
     content = models.TextField()
     picture = models.ImageField(upload_to='img/')
     slug = models.SlugField()
-    
+    likes = models.ManyToManyField(User, related_name='post_likes', through='Like')  # Corregido aquí
+
     def __str__(self):
         return self.author
     

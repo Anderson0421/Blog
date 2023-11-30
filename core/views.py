@@ -13,17 +13,8 @@ class HomeView(View):
         dashboardinit = request.user.has_perm('core.can_add_post_view')
 
         posts = Post.objects.all()
-        liked_posts = []
-
-        for post in posts:
-            if request.user.is_authenticated:
-                like_query = Like.objects.filter(user=request.user, post=post)
-                liked = like_query.exists()
-                liked_posts.append({'liked': liked})
-
         context = {
             'posts': posts,  
-            'likes':liked_posts,
             'dashboardinit': dashboardinit,
         }   
         return render(request, 'post/index.html', context)
