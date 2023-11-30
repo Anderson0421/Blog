@@ -16,20 +16,16 @@ class HomeView(View):
         liked_posts = []
 
         for post in posts:
-            like_query = None
-            if request.user.is_authenticated:
-                like_query = Like.objects.filter(user=request.user, post=post)
-            
-            liked = like_query.exists() if like_query else False
+            like_query = Like.objects.filter(user=request.user, post=post)
+            liked = like_query.exists()
             liked_posts.append({'liked': liked})
 
         context = {
             'posts': posts,  
-            'likes': liked_posts,
+            'likes':liked_posts,
             'dashboardinit': dashboardinit,
         }   
         return render(request, 'post/index.html', context)
-
     
 
 class DetailPost(DetailView):
