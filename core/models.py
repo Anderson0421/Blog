@@ -23,6 +23,9 @@ class Post(models.Model):
     slug = models.SlugField()
     likes = models.ManyToManyField(User, related_name='post_likes', through='Like')  # Corregido aquí
 
+    class Meta:
+        ordering = ('-actualizado',)
+
     def __str__(self):
         return self.author
     
