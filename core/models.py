@@ -20,7 +20,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150,verbose_name='Title')
     content = models.TextField()
     picture = models.ImageField(upload_to='img/')
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     likes = models.ManyToManyField(User, related_name='post_likes', through='Like')  # Corregido aquí
 
     class Meta:
