@@ -4,7 +4,7 @@ from django.views.generic import View
 from django.views.generic import DetailView
 from .models import Like, Post,PostView
 from .forms import CommentForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -26,14 +26,10 @@ class DetailPost(DetailView):
 
     def get_object(self, *kwargs):
         object = super().get_object(*kwargs)
-        if self.request.user.is_authenticated: 
+        if self.request.user.is_authenticated:
             PostView.objects.get_or_create(user=self.request.user, post=object)
-        else:
-            return redirect('/')
         return object
-    
-    
-    
+
     def post(self, request, *args, **kwargs):
         form = CommentForm(request.POST)
         
@@ -43,21 +39,25 @@ class DetailPost(DetailView):
             comment.user = request.user
             comment.post = post
             comment.save()
-            return HttpResponseRedirect(reverse('Detail', args=[post.slug]))  # Asegúrate de incluir el slug en la redirección
+            return HttpResponseRedirect(reverse('Detail', args=[post.slug]))
 
-        
+    def like_post(self, post):
+        like, created = Like.objects.get_or_create(user=self.request.user, post=post)
+        if not created:
+            like.delete()
+
     def get_context_data(self, **kwargs):
-        posts = Post.objects.all()
-        liked_posts = []
-        for post in posts:
-            like_query = Like.objects.filter(user=self.request.user, post=post)
-            liked = like_query.exists()
-            liked_posts.append({'liked': liked})
         context = super().get_context_data(**kwargs)
+        post = self.get_object()
         context['form'] = CommentForm()
+
+        if self.request.user.is_authenticated:
+            liked_posts = [Like.objects.filter(user=self.request.user, post=post).exists()]
+        else:
+            liked_posts = []
+
         context['likes'] = liked_posts
         return context
-    
 
 def LikeView(request, slug):
     post = get_object_or_404(Post, slug=slug)

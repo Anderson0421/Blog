@@ -15,13 +15,13 @@
     </div>
     <div class="group relative">
     <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-        <span class="text-3xl">
+        <div class="text-3xl pr-6">
             {{object.title}}
-        </span>
+        </d>
     </h3>
-    <p class="mt-5 h-full  text-sm xl:mr-64 lg:mr-64 md:mr-64 2xl:mr-64 text-gray-600">
+    <div class="mt-5 h-full pr-6 text-base text-gray-800">
         {{object.content|safe}}
-    </p>
+    </div>
     </div>
     <div class="relative mt-8 flex items-center gap-x-4">
         <img src={% static "logo.jpg" %} alt="" class="h-10 w-10 rounded-full bg-gray-50">
@@ -83,7 +83,11 @@
                 
             
                 <div class="flex items-center justify-between p-3">
-                    <input type="submit" value="Comentar" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+                    {% if user.is_authenticated %}
+                        <input type="submit" value="Comentar" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+                    {% else %}
+                        <a href="{% url "account_login" %}" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">Comentar</a>
+                    {% endif %}
                 </div>
             </form>
             
